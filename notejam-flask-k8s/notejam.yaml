@@ -1,0 +1,92 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: notejam-flask
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+  namespace: notejam-flask
+data:
+  PORT: "3000"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notejam-flask
+  labels:
+    app: notejam-flask
+  namespace: notejam-flask
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: notejam-flask
+  template:
+    metadata:
+      labels:
+        app: notejam-flask
+    spec:
+      containers:
+      - name: notejam-flask
+        image: gcr.io/${PROJECT_ID}/notejam-flask:f801115
+        imagePullPolicy: Always
+        env:
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql
+                  key: username
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql
+                  key: password
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                   name: notejam-mysql
+                   key: database
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "300m"
+          limits:
+            memory: "512Mi"
+            cpu: "750m"
+        envFrom:
+        - configMapRef:
+            name: config
+
+      - name: cloudsql-proxy  
+        image: gcr.io/${PROJECT_ID}/gce-proxy:1.17
+        command: ["/cloud_sql_proxy",
+                  "-instances=${INSTANCE_CONNECTION_NAME}=tcp:3306",
+                  "-credential_file=/secrets/mysql-key.json"]
+        volumeMounts:
+          - name: cloudsql-oauth-credentials
+            mountPath: /secrets/
+            readOnly: true
+      volumes:
+        - name: cloudsql-oauth-credentials
+          secret:
+            secretName: cloudsql-oauth-credentials
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notejam-flask
+  labels:
+    app: notejam-flask
+  namespace: notejam-flask
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    app: notejam-flask
