@@ -34,7 +34,7 @@ _Strackdriver will be used for monitoring and also for consolidating all the log
 
 ### Diagram
 
-
+![](https://github.com/ovaleanujnpr/notejam/blob/master/images/Notejam_diagram.png)
 
 To achieve all these described above the following tasks need to be performed:
 
