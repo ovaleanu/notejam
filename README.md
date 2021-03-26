@@ -6,7 +6,7 @@ This document provides a Kubernetes cloud native infrastructure on Google Cloud 
 
 Notejam is currently build as monolithic containing built-in webserver and SQLite database.
 
-![](/images/2021/03/notejam.png)
+![](https://github.com/ovaleanujnpr/notejam/blob/master/images/notejam.png)
 
 ### Requirements
 
