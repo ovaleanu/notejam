@@ -100,7 +100,7 @@ gcloud services enable \
  cloudresourcemanager.googleapis.com
 ```
 
-#### Create a DNS zone
+### Create a DNS zone
 ```
 gcloud dns managed-zones create ${ZONE} --dns-name="$DOMAIN." --description="$DOMAIN DNS zone"
 gcloud dns managed-zones update ${ZONE} --dnssec-state on
@@ -129,7 +129,7 @@ gcloud alpha domains registrations register $DOMAIN \
 gcloud alpha domains registrations describe $DOMAIN
 ```
 
-#### Create the Virtual Private Network the associated networking services
+### Create the Virtual Private Network the associated networking services
 ```
 gcloud compute networks create ${NETWORK_PROD} --subnet-mode=auto
 gcloud compute firewall-rules create ${NETWORK_PROD}-allow-internal --network ${NETWORK_PROD} --allow tcp,udp,icmp --source-ranges 10.154.0.0/20
@@ -151,7 +151,7 @@ gcloud container clusters create ${GKE_PROD} \
 ![](https://github.com/ovaleanujnpr/notejam/blob/master/images/notejam2.png)
 
 
-#### Create the Git repositories in Cloud Source Repositories
+### Create the Git repositories in Cloud Source Repositories
 
 ```
 cd ~/projects/notejam-flask-app
@@ -175,7 +175,7 @@ gcloud builds submit --tag="gcr.io/${PROJECT_ID}/notejam-flask:${COMMIT_ID}" .
 ```
 
 
-#### Pipeline Architecture
+### Pipeline Architecture
 
 ![](https://github.com/ovaleanujnpr/notejam/blob/master/images/notejam4.png)
 
@@ -224,7 +224,7 @@ cd ~/projects/notejam-flask-app
 git push google master
 ```
 
-#### Configure MySQL database with Cloud SQL
+### Configure MySQL database with Cloud SQL
 The built-in db SQLite from the monolytic app of Notejam will be replaced with a MySQL instance running on Cloud SQL. To connect to MySQL instance, Google Cloud Platform provides CloudSQL proxy sidecar container. We will need to add this container to our pipeline.
 
 ```
@@ -275,7 +275,7 @@ kubectl create secret generic cloudsql-instance-credentials \
 --from-file=credentials.json=./mysql-key.json
 ```
 
-#### Create the CD pipeline
+### Create the CD pipeline
 Cloud Build is also used for the continuous delivery pipeline. The pipeline applies the new version of the manifest to the Kubernetes cluster and, if successful, copies the manifest over to the production branch. This process has the following properties:
 
 - The production branch is a history of the successful deployments.
