@@ -62,8 +62,8 @@ A GitHub account is needed to fork of the application at https://github.com/oval
 
 #### Setup the environment
 ```
-git clone
-cd notejam
+git clone https://github.com/ovaleanujnpr/notejam projects/
+cd projects
 ```
 
 Create a .env file based on the provided .env.example as a guide and source the file.
