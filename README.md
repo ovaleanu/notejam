@@ -177,7 +177,7 @@ gcloud builds submit --tag="gcr.io/${PROJECT_ID}/notejam-flask:${COMMIT_ID}" .
 
 #### Pipeline Architecture
 
-https://cloud.google.com/kubernetes-engine/images/gitops-tutorial-pipeline-flow.svg
+![](https://github.com/ovaleanujnpr/notejam/blob/master/images/notejam4.png)
 
 #### Create the CI pipeline
 
