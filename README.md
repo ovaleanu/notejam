@@ -17,13 +17,13 @@ _The Application will be deployed on a Google Kubernetes Engine. The pods runnin
 _Automated backups and point-in-time recovery are enabled and we will store Cloud SQL database exports on Cloud Storage using Cloud Scheduler._
 
 - Continuity in case of datacentre failures.
-_We will use Google Kubernetes Engine and MySQL DB HA Cloud SQL instance with a FailOver replica. There's also set up an automatic daily backups._
+_We will use Google Kubernetes Engine and MySQL DB HA Cloud SQL instance with a Failover replica. There's also set up an automatic daily backups._
 
 - The Service must be able to be migrated to different regions in case of emergency.
 _We will not cover this use case in this example, but this is possible migrating the GKE cluster to another region and Cloud SQL replication for the database._
 
 - More than 100 developers needs to be able to deliver new versions of the app continuously without downtime.
-_We will use Google Cloud Build CI/CD pipeline integrated to GitHub to test and deploy the app automatically to Google Kubernetes Engine._
+_We will use Google Cloud Build CI/CD pipeline integrated with Cloud Source Repositories to test and deploy the app automatically on Google Kubernetes Engine._
 
 - Provision separated environments to support their development process for development, testing, production in the near future.
 _We will create the environment for production. Another two environments for development ansd testing can be created similar. Each environment should be run in it's own Google Cloud Project to ensure isolation of resources._
