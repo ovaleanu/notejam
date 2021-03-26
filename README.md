@@ -148,6 +148,9 @@ gcloud container clusters create ${GKE_PROD} \
 --subnetwork "projects/${PROJECT_ID}/regions/${GCP_REGION}/subnetworks/${NETWORK_PROD}"
 ```
 
+![](https://github.com/ovaleanujnpr/notejam/blob/master/images/notejam2.png)
+
+
 #### Create the Git repositories in Cloud Source Repositories
 
 ```
@@ -169,16 +172,12 @@ git push --all google
 cd ~/projects/notejam-flask-app
 COMMIT_ID="$(git rev-parse --short=7 HEAD)"
 gcloud builds submit --tag="gcr.io/${PROJECT_ID}/notejam-flask:${COMMIT_ID}" .
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-ID                                    CREATE_TIME                DURATION  SOURCE                                                                                             IMAGES                                            STATUS
-24379360-d97a-4a3d-a3a8-ef805765222b  2021-03-25T21:02:22+00:00  39S       gs://contrail-k8s-289615_cloudbuild/source/1616706140.771486-8d784dc0a7d349d88271f91e8e743145.tgz  gcr.io/contrail-k8s-289615/notejam-flask:f801115  SUCCESS
 ```
+
 
 #### Pipeline Architecture
 
-
+https://cloud.google.com/kubernetes-engine/images/gitops-tutorial-pipeline-flow.svg
 
 #### Create the CI pipeline
 
@@ -244,8 +243,11 @@ gcloud sql instances create ${DB_INSTANCE_NAME} \
 --enable-bin-log \
 --database-version=MYSQL_5_7 \
 --region=europe-west2 \
-
 ```
+
+![](https://github.com/ovaleanujnpr/notejam/blob/master/images/notejam3.png)
+
+
 Set the root password
 
 ```
@@ -253,7 +255,6 @@ gcloud sql users set-password root \
 --host=% \
 --instance=${DB_INSTANCE_NAME} \
 --password=${DB_ROOT_PASS} \
-
 ```
 
 Set up MySQL service account, that will be used with CloudSQL Proxy in Kubernetes and bind the cloudsql.admin role to this service account
