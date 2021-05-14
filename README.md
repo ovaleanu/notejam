@@ -6,7 +6,7 @@ This document provides a Kubernetes cloud native infrastructure on Google Cloud 
 
 Notejam is currently build as monolithic containing built-in webserver and SQLite database.
 
-![](https://github.com/ovaleanujnpr/notejam/blob/master/images/notejam.png)
+![](https://github.com/ovaleanu/notejam/blob/master/images/notejam.png)
 
 ### Requirements
 
@@ -34,7 +34,7 @@ _Strackdriver will be used for monitoring and also for consolidating all the log
 
 ### Diagram
 
-![](https://github.com/ovaleanujnpr/notejam/blob/master/images/Notejam_diagram.png)
+![](https://github.com/ovaleanu/notejam/blob/master/images/Notejam_diagram.png)
 
 To achieve all these described above the following tasks need to be performed:
 
@@ -52,7 +52,7 @@ To achieve all these described above the following tasks need to be performed:
 
 ### Github account and application repo
 
-A GitHub account is needed to fork of the application at https://github.com/ovaleanujnpr/notejam.
+A GitHub account is needed to fork of the application at https://github.com/ovaleanu/notejam.
 
 ### Google Cloud Platform prerequisites
 
@@ -62,7 +62,7 @@ A GitHub account is needed to fork of the application at https://github.com/oval
 
 #### Setup the environment
 ```
-git clone https://github.com/ovaleanujnpr/notejam projects/
+git clone https://github.com/ovaleanu/notejam projects/
 cd projects
 ```
 
@@ -148,7 +148,7 @@ gcloud container clusters create ${GKE_PROD} \
 --subnetwork "projects/${PROJECT_ID}/regions/${GCP_REGION}/subnetworks/${NETWORK_PROD}"
 ```
 
-![](https://github.com/ovaleanujnpr/notejam/blob/master/images/notejam2.png)
+![](https://github.com/ovaleanu/notejam/blob/master/images/notejam2.png)
 
 
 ### Create the Git repositories in Cloud Source Repositories
@@ -177,7 +177,7 @@ gcloud builds submit --tag="gcr.io/${PROJECT_ID}/notejam-flask:${COMMIT_ID}" .
 
 ### Pipeline Architecture
 
-![](https://github.com/ovaleanujnpr/notejam/blob/master/images/notejam4.png)
+![](https://github.com/ovaleanu/notejam/blob/master/images/notejam4.png)
 
 #### Create the CI pipeline
 
@@ -245,7 +245,7 @@ gcloud sql instances create ${DB_INSTANCE_NAME} \
 --region=europe-west2 \
 ```
 
-![](https://github.com/ovaleanujnpr/notejam/blob/master/images/notejam3.png)
+![](https://github.com/ovaleanu/notejam/blob/master/images/notejam3.png)
 
 
 Set the root password
